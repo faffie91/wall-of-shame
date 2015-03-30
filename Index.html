@@ -4,8 +4,15 @@
 
 .node circle {
   fill: #fff;
-  stroke: steelblue;
   stroke-width: 0.75px;
+}
+
+circle.male {
+    stroke: steelblue;
+}
+
+circle.female {
+    stroke: red;
 }
 
 .node {
@@ -55,7 +62,8 @@ d3.json("flare.json", function(error, root) {
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
 
   node.append("circle")
-      .attr("r", 1.5);
+      .attr("r", 1.5)
+      .attr("class", function(d) {return d.gender == 1 ? "female" : "male"; });
 
   node.append("text")
       .attr("dy", ".31em")
